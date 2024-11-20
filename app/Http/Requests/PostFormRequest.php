@@ -23,7 +23,9 @@ class PostFormRequest extends FormRequest
     {
         return [
             'title'=> ['required','min:8'],
-            'content'=> ['required', 'max:2000']
+            'content'=> ['required', 'max:2000'],
+            'category_id'=> ['required', 'exists:categories,id'],
+            "tags" => ["required", "array", "exists:tags,id"]
         ];
     }
 }

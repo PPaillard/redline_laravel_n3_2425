@@ -15,6 +15,29 @@
         {{ $message  }}
         @enderror
     </div>
+    <div class="form-group">
+        <label for="category">Catégorie</label>
+        <select id="category" class="form-control" name="category_id">
+            @foreach($categories as $category)
+                <option @selected(old("category_id", $post->category_id) == $category->id)
+                        value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
+        @error('category_id')
+        {{ $message  }}
+        @enderror
+    </div>
+    <div class="form-group">
+        <label for="tag">Tags</label>
+        <select id="tag"  class="form-control" name="tags[]" multiple>
+            @foreach($tags as $tag)
+                <option @selected($post->tags->contains($tag)) value="{{$tag->id}}">{{$tag->name}}</option>
+            @endforeach
+        </select>
+        @error('tags')
+        {{ $message  }}
+        @enderror
+    </div>
     <button class="btn btn-primary">
         @if($post->id)
             Modifier
