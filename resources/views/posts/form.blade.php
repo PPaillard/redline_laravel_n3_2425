@@ -31,7 +31,7 @@
         <label for="tag">Tags</label>
         <select id="tag"  class="form-control" name="tags[]" multiple>
             @foreach($tags as $tag)
-                <option @selected($post->tags->contains($tag)) value="{{$tag->id}}">{{$tag->name}}</option>
+                <option @selected(in_array($tag->id, old("tags",$post?->tags->pluck('id')->toArray() ?? []))) value="{{$tag->id}}">{{$tag->name}}</option>
             @endforeach
         </select>
         @error('tags')
